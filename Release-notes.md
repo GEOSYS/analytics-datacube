@@ -6,7 +6,7 @@ nav_order: 9
 
 
 
-# Reflectance datacube processor Release notes
+# Analytics datacube processor Release notes
 
 
 
