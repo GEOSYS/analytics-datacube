@@ -15,6 +15,7 @@ from fastapi.openapi.docs import get_swagger_ui_html
 from fastapi.security import OAuth2PasswordBearer
 from fastapi.staticfiles import StaticFiles
 from geosyspy.utils.jwt_validator import check_token_validity
+from mangum import Mangum
 
 from analytics_datacube_processor.cloud_storage_provider import CloudStorageProvider
 from analytics_datacube_processor.processor import AnalyticsDatacube
@@ -24,7 +25,25 @@ from schemas.input_schema import InputModel, Parameters
 logger_manager = LogManager.get_instance()
 load_dotenv()
 
-app = FastAPI(docs_url=None, title="analytics_datacube_processor" + " API", description="")
+if os.getenv("GATEWAY_STAGE") == "":
+    app = FastAPI(
+        docs_url="/docs",
+        title="analytics-datacube-processor" + " API",
+        description="",
+        openapi_url="/openapi.json",
+        redoc_url=None,
+    )
+else:
+    app = FastAPI(
+        docs_url="/docs",
+        title="analytics-datacube-processor" + " API",
+        description="",
+        root_path="/" + os.getenv("GATEWAY_STAGE") + "/",
+        openapi_url="/openapi.json",
+        redoc_url=None,
+    )
+
+handler = Mangum(app)
 
 # identity server configuration
 tokenUrl = os.getenv("IDENTITY_SERVER_URL")
@@ -39,7 +58,11 @@ if public_certificate_key is not None:
 
 
 # pylint: disable=missing-docstring
-
+@app.get("/")
+def welcome():
+    return {
+        "Welcome to ": "Analytics Datacube Processor, please add '/docs' to URL to open swagger UI"
+    }
 
 @app.get("/docs", include_in_schema=False)
 async def swagger_ui_html() -> str:

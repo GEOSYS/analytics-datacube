@@ -25,3 +25,5 @@ geosyspy==0.2.1
 byoa
 numpy
 psutil
+mangum
+pandas
