@@ -1,7 +1,13 @@
 plugins:
   - jekyll-relative-links
   - jekyll-seo-tag
-  - jekyll-swagger-ui
+  - jekyll-github-metadata
+  - jekyll-include-cache
+  - jekyll-redirect-from
+# Set the homepage https://stackoverflow.com/questions/31166747/jekyll-default-page
+
+permalink: pretty
+
 relative_links:
   enabled: true
   collections: true
@@ -14,6 +20,7 @@ include:
   - CONTRIBUTING.md
   - ISSUE_TEMPLATE.md
 #   - PULL_REQUEST_TEMPLATE.md
+
 remote_theme: just-the-docs/just-the-docs
 logo: "https://earthdaily.com/wp-content/themes/earthdaily-2023/src/assets/images/logo-1.svg"
 heading_anchors: true
@@ -27,19 +34,21 @@ favicon_ico: "images/favicon.svg"
 last_edit_timestamp: true # show or hide edit time - page must have `last_modified_date` defined in the frontmatter
 last_edit_time_format: "%b %e %Y at %I:%M %p" # uses ruby's time format: https://ruby-doc.org/stdlib-2.7.0/libdoc/time/rdoc/Time.html
 
+# Color scheme currently only supports "dark", "light"/nil (default), or a custom scheme that you define
+color_scheme: nil
+
 # Footer "Edit this page on GitHub" link text
 gh_edit_link: true # show or hide edit this page link
-gh_edit_link_text: "Edit this page on GitHub."
-gh_edit_repository: "hhttps://github.com/earthdaily/analytics-datacube-processor" # the github URL for your repo
-gh_edit_branch: "gh-pages" # the branch that your docs is served from
+gh_edit_link_text: "Edit this page on GitHub"
+gh_edit_repository: "https://github.com/vincentlel/EDS_documentation" # the github URL for your repo
+gh_edit_branch: "main" # the branch that your docs is served from
+# gh_edit_source: docs # the source that your files originate from
+gh_edit_view_mode: "tree" # "tree" or "edit" if you want the user to jump into the editor immediately
 
 # Back to top link
 back_to_top: true
 back_to_top_text: "Back to top"
 
-plugins:
-  - jekyll-seo-tag
-  - jekyll-swagger-ui
 
 # Enable or disable the site search
 # Supports true (default) or false
