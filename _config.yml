@@ -8,6 +8,11 @@ plugins:
 
 permalink: pretty
 
+url: "https://earthdaily.github.io/analytics-datacube-processor/" # the base hostname & protocol for your site, e.g. http://example.com
+
+# For copy button on code
+enable_copy_code_button: true
+
 relative_links:
   enabled: true
   collections: true

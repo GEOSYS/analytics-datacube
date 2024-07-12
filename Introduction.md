@@ -2,6 +2,9 @@
 layout: default
 title: Introduction
 nav_order: 1
+permalink: /
+redirect_from:
+  - /API Authentication
 ---
 
 # Welcome to the Earthdaily Analytics Datacube documentation
